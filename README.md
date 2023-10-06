@@ -40,11 +40,6 @@ I have a table Student with 5 columns - id, name, age, grade, gender
 generate the DDL for MySQL DB : create 10 sample records for this table
 ```
 
-3. select code then ask question on it. {student.yaml} --> single endpoint
-```
-create me karate feature file
-```
-
 Chat with code:
 1. 
 ```
