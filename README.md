@@ -25,44 +25,39 @@ def bubble_SORT(array)
 a = [1, 4, 1, 3, 4, 1, 3, 3] 
 print(bubble_SORT(a)) 
 ```
-#### 
-Chat 
+#### Chat 
 
 Generic 
 1.
-
 ```
-public StudentDto getStudent(Long id) {
-        log.info("Getting student with id {}", id);
+Write me a dockefile to run a python flask application. Requirements : 1) install required dependencies 2) run it on port-8000 3) check if app is running using 'test' endpoint
+```
 
-        if(id < 1) {
-            String message = "Invalid id : "+ id;
-            log.error(message);
-            throw new InvalidIdException(message);
-        }
+2.
+```
+I have a table Student with 5 columns - id, name, age, grade, gender 
 
-        Optional<StudentDto> student = studentRepository.findById(id);
-        
-        if(student.isPresent()) {
-            return student.get();
-        } else {
-            String message = "Student with id " + id + " is not present!";
-            log.error(message);
-            throw new ResourceNotFoundException(message);
-        }
-    }
-```explain code
+generate the DDL for MySQL DB : create 10 sample records for this table
+```
 
----------------------------------------------------------------
-Chat with Code :
+3. select code then ask question on it. {student.yaml} --> single endpoint
+```
+create me karate feature file
+```
+
+Chat with code:
 1. 
-```Where is code that gives list of Course by id from database? ```
-2. 
-``` ```
-3. 
-``` ```
-4. 
-``` ```
+```
+Where is code that gives list of Course by id from database?
+```
+
+Chat with infra: 
+1.
+```
+What are the inbound and outbound rules enabled for MyInstance in Security Group?
+```
+***
+
 ### migrate 
 Migrate code from cobol to java /code :
 
