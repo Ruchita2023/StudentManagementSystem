@@ -67,12 +67,12 @@ Searching.java : Where is function countDELIMITER() from class Searching used or
 
 1.
 ```
-What are the inbound and outbound rules enabled for MyInstance in Security Group?
+Why am I unable to access my application running on i-1234567890abcdef0 over port 443. Go over the security groups information. And Tell me procedure to resolve it?
 ```
 
 2. 
 ```
-I am unable to access my application running on i-1234567890abcdefO over port 443. Go over the security groups info. Why?
+What are the inbound and outbound rules enabled for MyInstance in Security Group?
 ```
 ***
 
