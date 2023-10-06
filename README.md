@@ -29,7 +29,8 @@ print(bubble_SORT(a))
 Chat 
 
 Generic 
-1. 
+1.
+
 ```
 public StudentDto getStudent(Long id) {
         log.info("Getting student with id {}", id);
@@ -50,8 +51,9 @@ public StudentDto getStudent(Long id) {
             throw new ResourceNotFoundException(message);
         }
     }
-```
+```explain code
 
+---------------------------------------------------------------
 Chat with Code :
 1. 
 ``` ```
