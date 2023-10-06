@@ -27,7 +27,8 @@ print(bubble_SORT(a))
 ```
 #### Chat 
 
-Generic 
+### Generic : 
+
 1.
 ```
 Write me a dockefile to run a python flask application. Requirements : 1) install required dependencies 2) run it on port-8000 3) check if app is running using 'test' endpoint
@@ -40,16 +41,38 @@ I have a table Student with 5 columns - id, name, age, grade, gender
 generate the DDL for MySQL DB : create 10 sample records for this table
 ```
 
-Chat with code:
+3. select code then ask question on it. {student.yaml} --> single endpoint
+```
+create me karate feature file
+```
+
+### Chat with code:
+
 1. 
+```
+Explain about the functionality of complete project.
+```
+
+2.
 ```
 Where is code that gives list of Course by id from database?
 ```
 
-Chat with infra: 
+3. 
+```
+Searching.java : Where is function countDELIMITER() from class Searching used or called in project?
+```
+
+## Chat with infra: 
+
 1.
 ```
 What are the inbound and outbound rules enabled for MyInstance in Security Group?
+```
+
+2. 
+```
+I am unable to access my application running on i-1234567890abcdefO over port 443. Go over the security groups info. Why?
 ```
 ***
 
