@@ -56,7 +56,7 @@ public StudentDto getStudent(Long id) {
 ---------------------------------------------------------------
 Chat with Code :
 1. 
-``` ```
+```Where is code that gives list of Course by id from database? ```
 2. 
 ``` ```
 3. 
