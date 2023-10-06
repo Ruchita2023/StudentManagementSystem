@@ -64,9 +64,9 @@ Chat with Code :
 4. 
 ``` ```
 ### migrate 
-``` Migrate code from cobol to java /code :
+Migrate code from cobol to java /code :
 
-IDENTIFICATION DIVISION.
+```IDENTIFICATION DIVISION.
 PROGRAM-ID. BINARY-SEARCH.
 
 DATA DIVISION.
