@@ -1,5 +1,3 @@
-Migrate code from cobol to java /code :
-```
 IDENTIFICATION DIVISION.
 PROGRAM-ID. BINARY-SEARCH.
 
@@ -52,4 +50,3 @@ DISPLAY-RESULT.
     ELSE
         DISPLAY "Target value not found in the list"
     END-IF. 
-```
