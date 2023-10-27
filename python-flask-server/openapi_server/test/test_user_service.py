@@ -1,36 +1,36 @@
 from services.user_service import *
 import unittest
-from unittest.mock import patch
-
 from openapi_server.models.user import User
 from openapi_server.config_test import db
-from openapi_server.service import UserService
+from openapi_server.services import UserService
 
 class TestUserService(unittest.TestCase):
+  
     def setUp(self):
-        db.drop_all()
         db.create_all()
-        self.user = User(username="testuser", password="testpassword")
-        db.session.add(self.user)
-        db.session.commit()
-
+    
     def tearDown(self):
         db.session.remove()
         db.drop_all()
 
     def test_create_user(self):
-        with patch.object(UserService, "create_user") as mock_create_user:
-            mock_create_user.return_value = self.user
-            user = UserService.create_user("testuser2", "testpassword2")
-            self.assertEqual(user, self.user)
+        user = UserService.create_user('test_user', 'test_password')
+        self.assertIsInstance(user, User)
+        self.assertEqual(user.username, 'test_user')
+        self.assertEqual(user.password, 'test_password')
 
     def test_get_user_by_username(self):
-        user = UserService.get_user_by_username("testuser")
-        self.assertEqual(user, self.user)
+        user = UserService.create_user('test_user', 'test_password')
+        retrieved_user = UserService.get_user_by_username('test_user')
+        self.assertIsInstance(retrieved_user, User)
+        self.assertEqual(retrieved_user.username, 'test_user')
+        self.assertEqual(retrieved_user.password, 'test_password')
 
-    def test_get_user_by_username_none(self):
-        user = UserService.get_user_by_username("nonexistentuser")
-        self.assertIsNone(user)
+    def test_get_user_by_nonexistent_username(self):
+        retrieved_user = UserService.get_user_by_username('nonexistent_user')
+        self.assertIsNone(retrieved_user)
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_create_duplicate_user(self):
+        user1 = UserService.create_user('test_user', 'test_password')
+        with self.assertRaises(Exception):
+            user2 = UserService.create_user('test_user', 'test_password')
