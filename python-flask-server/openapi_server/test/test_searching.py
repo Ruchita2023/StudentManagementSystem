@@ -2,50 +2,88 @@ from services.searching import *
 import unittest
 
 class TestSearching(unittest.TestCase):
-    
-    def test_search_params_none(self):
-        result = searching(None, Model)
-        self.assertEqual(result, Model.query)
-        
-    def test_search_params_empty_string(self):
-        result = searching("", Model)
-        self.assertEqual(result, Model.query)
-        
-    def test_search_params_only_spaces(self):
-        result = searching("   ", Model)
-        self.assertEqual(result, Model.query)
-        
-    def test_search_params_single_criterion_equals(self):
-        result = searching("name = 'John'", Model)
-        self.assertEqual(result.filter_by(name='John'), Model.query.filter_by(name='John'))
-        
-    def test_search_params_single_criterion_less_than(self):
-        result = searching("age < 30", Model)
-        self.assertEqual(result.filter(Model.age < 30), Model.query.filter(Model.age < 30))
-        
-    def test_search_params_single_criterion_greater_than(self):
-        result = searching("age > 30", Model)
-        self.assertEqual(result.filter(Model.age > 30), Model.query.filter(Model.age > 30))
-        
-    def test_search_params_single_criterion_less_than_equals(self):
-        result = searching("age <= 30", Model)
-        self.assertEqual(result.filter(Model.age <= 30), Model.query.filter(Model.age <= 30))
-        
-    def test_search_params_single_criterion_greater_than_equals(self):
-        result = searching("age >= 30", Model)
-        self.assertEqual(result.filter(Model.age >= 30), Model.query.filter(Model.age >= 30))
-        
-    def test_search_params_single_criterion_like(self):
-        result = searching("name like '%John%'", Model)
-        self.assertEqual(result.filter(Model.name.like('%John%')), Model.query.filter(Model.name.like('%John%')))
-        
-    def test_search_params_single_criterion_between(self):
-        result = searching("age BETWEEN 20 AND 30", Model)
-        self.assertEqual(result.filter(Model.age.between(20,30)), Model.query.filter(Model.age.between(20,30)))
-        
-    def test_search_params_multiple_criteria(self):
-        result = searching("name = 'John'; age >= 30; email like '%@gmail.com%'", Model)
-        self.assertEqual(result.filter_by(name='John').filter(Model.age >= 30).filter(Model.email.like('%@gmail.com%')), Model.query.filter_by(name='John').filter(Model.age >= 30).filter(Model.email.like('%@gmail.com%')))
-        
+
+    def test_searching_with_no_params(self):
+        """
+        Test searching function with no search parameters
+        """
+        search_params = ''
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.all())
+
+    def test_searching_with_one_param(self):
+        """
+        Test searching function with one search parameter
+        """
+        search_params = 'field = "value"'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.filter(getattr(Model, 'field') == 'value').all())
+
+    def test_searching_with_multiple_params(self):
+        """
+        Test searching function with multiple search parameters
+        """
+        search_params = 'field1 = "value1"; field2 > 5; field3 like "%test%"'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        query_filters = [getattr(Model, 'field1') == 'value1', getattr(Model, 'field2') > 5, getattr(Model, 'field3').like('%test%')]
+        self.assertEqual(result.all(), Model.query.filter(*query_filters).all())
+
+    def test_searching_with_less_than_operator(self):
+        """
+        Test searching function with less than operator
+        """
+        search_params = 'field < 5'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.filter(getattr(Model, 'field') < 5).all())
+
+    def test_searching_with_greater_than_operator(self):
+        """
+        Test searching function with greater than operator
+        """
+        search_params = 'field > 5'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.filter(getattr(Model, 'field') > 5).all())
+
+    def test_searching_with_less_than_or_equal_to_operator(self):
+        """
+        Test searching function with less than or equal to operator
+        """
+        search_params = 'field <= 5'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.filter(getattr(Model, 'field') <= 5).all())
+
+    def test_searching_with_greater_than_or_equal_to_operator(self):
+        """
+        Test searching function with greater than or equal to operator
+        """
+        search_params = 'field >= 5'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.filter(getattr(Model, 'field') >= 5).all())
+
+    def test_searching_with_like_operator(self):
+        """
+        Test searching function with like operator
+        """
+        search_params = 'field like "%test%"'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.filter(getattr(Model, 'field').like('%test%')).all())
+
+    def test_searching_with_between_operator(self):
+        """
+        Test searching function with between operator
+        """
+        search_params = 'field BETWEEN "2" AND "7"'
+        Model = SomeModel
+        result = searching(search_params, Model)
+        self.assertEqual(result.all(), Model.query.filter(getattr(Model, 'field').between('2', '7')).all())
+
 if __name__ == '__main__':
     unittest.main()
